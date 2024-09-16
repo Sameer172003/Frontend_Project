@@ -1,0 +1,135 @@
+<!-- To-Do List -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Note Taking App</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        flex-direction: column;
+      }
+
+      h1 {
+        margin-bottom: 20px;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 600px;
+        margin: 20px;
+      }
+
+      input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-bottom: 10px;
+      }
+
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #218838;
+      }
+
+      .notes-list {
+        margin-top: 20px;
+        list-style: none;
+        padding: 0;
+      }
+
+      .note {
+        background-color: white;
+        border-radius: 5px;
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin-bottom: 10px;
+      }
+
+      .note button {
+        background-color: #dc3545;
+        border: none;
+        color: white;
+        padding: 7px 15px;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+
+      .note button:hover {
+        background-color: #c82333;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Note Taking App</h1>
+
+    <div class="container">
+      <input type="text" id="noteInput" placeholder="Enter your note" />
+      <button id="addNoteBtn">Add Note</button>
+
+      <ul class="notes-list" id="notesList">
+        <!-- Notes will be dynamically added here -->
+      </ul>
+    </div>
+    <script>
+      const addNoteBtn = document.getElementById("addNoteBtn");
+      const noteInput = document.getElementById("noteInput");
+      const notesList = document.getElementById("notesList");
+
+      // Function to add a new note
+      function addNote() {
+        const noteText = noteInput.value.trim(); // Get the input text
+
+        if (noteText) {
+          // Create a new list item (note)
+          const noteItem = document.createElement("li");
+          noteItem.className = "note";
+          noteItem.innerHTML = `
+          <span>${noteText}</span>
+          <button onclick="deleteNote(this)">Delete</button>
+        `;
+
+          notesList.appendChild(noteItem); // Add the note to the list
+          noteInput.value = ""; // Clear the input field
+        } else {
+          alert("Please enter a valid note!"); // Show an alert if input is empty
+        }
+      }
+
+      // Function to delete a note
+      function deleteNote(button) {
+        const noteItem = button.parentElement; // Get the parent list item
+        notesList.removeChild(noteItem); // Remove the list item (note)
+      }
+
+      // Add event listener to the "Add Note" button
+      addNoteBtn.addEventListener("click", addNote);
+    </script>
+  </body>
+</html>

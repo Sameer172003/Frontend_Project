@@ -1,0 +1,57 @@
+<!-- Change BackGround after clicking button -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice</title>
+    <style>
+        body {
+            background-color: #FFFFFF;
+        }
+        h2 {
+            text-align: center;
+            margin-top: 20%;
+        }
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .set {
+            display: block;
+            align-items: center;
+            justify-content: center;
+        }
+        button {
+            margin-left: 50px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h2>Change Background</h2>
+    <div class="container">
+        <div class="set">
+            <h4 id="set2">Current Color: #FFFFFF</h4>
+            <button id="change">Click Me</button>
+        </div>
+    </div>
+    <script>
+        function getColors() {
+            const letters = '123456789ABCDEF';
+            let col = '#';
+            for (let i = 0; i < 6; i++) {
+                col += letters[Math.floor(Math.random() * 16)];
+            }
+            return col;
+        }
+        function changeBackground() {
+            const newCol = getColors();
+            document.body.style.backgroundColor = newCol;
+            document.getElementById('set2').textContent = `Current Color: ${newCol}`;
+        }
+        document.getElementById('change').addEventListener('click', changeBackground);
+    </script>
+</body>
+</html>
